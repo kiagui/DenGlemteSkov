@@ -1,6 +1,6 @@
 /* Variabler */
 html {
-  --color-page: #f7f7f7;
+  --color-page: #ad7241;
   --color-surface: #84ee53;
   --color-text: #222;
   --color-muted: #666;
@@ -250,4 +250,8 @@ main > * {
   background: var(--color-surface);
   color: inherit;
   text-decoration: none;
+}
+
+.logo {
+  max-width: 20px;
 }
