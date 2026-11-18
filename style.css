@@ -1,10 +1,17 @@
-/* Variabler */
+/* ======================================
+   VARIABLER
+   ====================================== */
 html {
-  --color-page: #ad7241;
-  --color-surface: #84ee53;
-  --color-text: #222;
-  --color-muted: #666;
-  --color-border: #d8d8d8;
+  --color-page: #f5e8df; /* creme - baggrund på alle sider */
+  --color-header: #84b175; /* mørk grøn - header og footer */
+  --color-action: #96d086; /* mellemgrøn - knapper, aktivt menupunkt, hover */
+  --color-surface: #b6e3aa; /* lysegrøn - kort, paneler, flader */
+  --color-accent: #ab7f5c; /* brun - overskrifter, kanter, accenter */
+  --color-text: #2f3a2a; /* mørk skovgrøn - al tekst */
+  --color-muted: #4f5e48; /* dæmpet grøn - undertekst (læsbar, ikke grå) */
+  --color-border: #ab7f5c; /* brun - kanter */
+  --color-magic: #c76fe8; /* lilla fra potion-flasken - "magisk" highlight */
+
   --space-05: 0.5rem;
   --space-1: 1rem;
   --space-2: 2rem;
@@ -14,20 +21,15 @@ html {
   color: var(--color-text);
 }
 
-/* Globalt layout */
+/* ======================================
+   GLOBALT LAYOUT (alle sider)
+   ====================================== */
 body {
   margin: 0;
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: minmax(1rlh, 1fr) minmax(0, 75rem) minmax(1rlh, 1fr);
-}
-
-h1,
-h2,
-h3,
-p {
-  margin: 0;
 }
 
 main {
@@ -37,11 +39,237 @@ main {
   align-content: start;
 }
 
+/* Alt direkte inde i <main> lægges i midterkolonnen */
 main > * {
   grid-column: 2;
   padding-block: var(--space-3);
 }
 
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Overskrifter i brun accent */
+h1,
+h2 {
+  color: var(--color-accent);
+}
+
+/* Skrifttyper
+   - Brødtekst: Cormorant Garamond (hentes i <head> på hver side)
+   - Overskrifter beholder den gamle skrifttype
+   - Formularen har sin egen skrifttype (se FORMULAR længere nede) */
+body {
+  font-family: "Cormorant Garamond", serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+}
+
+/* Fokus på links, knapper og formularfelter */
+:focus-visible {
+  outline: 3px solid var(--color-header);
+  outline-offset: 2px;
+}
+
+/* Formularfelter (standard) */
+input,
+textarea,
+select {
+  background: #fff;
+  border: 1px solid var(--color-border);
+}
+
+/* Nulstil popovers (menuen og popovers på forsiden) */
+[popover] {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Knap/link - bruges på opsamling.html og 404.html */
+.button {
+  justify-self: start;
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-action);
+  color: inherit;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--color-header);
+}
+
+/* Lilla magisk glød på ALLE knapper, når man holder musen over
+   - button = alle <button>-elementer
+   - .button = links, der er stylet som knapper */
+button:hover,
+.button:hover {
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+/* Animationen: gløder lilla i midten af hvert gennemløb */
+@keyframes glow {
+  50% {
+    box-shadow: 0 0 16px var(--color-magic);
+  }
+}
+
+/* Bevægelsesfølsomme brugere: ingen glød-animation */
+@media (prefers-reduced-motion: reduce) {
+  button:hover,
+  .button:hover {
+    animation: none;
+  }
+}
+
+/* ======================================
+   HEADER, NAVIGATION OG FOOTER (alle sider)
+   ====================================== */
+.site-header,
+.site-footer {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  background: var(--color-header);
+}
+
+.header-content,
+.footer-content {
+  grid-column: 2;
+}
+
+.header-content {
+  min-height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.site-logo {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Menu-knappen (vises kun på mobil) */
+.site-nav button {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-action);
+  @media (width > 600px) {
+    display: none;
+  }
+}
+
+.menu {
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  background: var(--color-header);
+  border: 1px solid var(--color-border);
+  @media (width > 600px) {
+    display: flex;
+    gap: var(--space-1);
+    padding: 0;
+    border: none;
+    background: none;
+    position: static;
+  }
+}
+
+.menu a {
+  display: block;
+  padding: 0.4rem 0;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid #0000;
+}
+
+/* Aktiv side og hover: streg under menupunktet */
+.menu a[aria-current="page"],
+.menu a:hover {
+  border-bottom-color: var(--color-page);
+}
+
+.footer-content {
+  padding-block: var(--space-1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1);
+  color: var(--color-text);
+}
+
+/* ======================================
+   FORSIDE (index.html)
+   ====================================== */
+.grid3-2 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+}
+
+.grid2-3 {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+/* Billeder på forsiden */
+.img {
+  width: 100%;
+  max-width: clamp(80px, 20vw, 250px);
+  height: auto;
+  justify-self: center;
+  align-self: center;
+}
+
+/* Popover: Billetter */
+#billetter {
+  margin: auto; /* centrerer den vandret og lodret */
+  padding: 2rem;
+  background: var(--color-muted);
+  border-radius: 12px;
+  max-width: 40rem; /* så den ikke bliver alt for bred */
+}
+
+/* Sværdet "trækkes frem" fra venstre, når man scroller ned til det */
+@keyframes draw-sword {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.sword {
+  animation: draw-sword ease-out both;
+  animation-timeline: view();
+  /* Starter når sværdet kommer ind i bunden af skærmen,
+     og er færdigt når HELE sværdet er inde på skærmen */
+  animation-range: entry 0% entry 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sword {
+    animation: none;
+  }
+}
+
+/* ======================================
+   SVG-SIDE (svg.html)
+   ====================================== */
 .svg-page {
   display: grid;
   gap: var(--space-2);
@@ -66,6 +294,87 @@ main > * {
   }
 }
 
+/* Boksen med SVG-kortet */
+.svg-placeholder {
+  min-height: -webkit-fill-available;
+  min-height: stretch;
+}
+
+/* display: block = fjerner det lille mellemrum under SVG'en */
+.svg-placeholder svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Feen flyver blødt mellem stenene (se script.js) */
+#fe {
+  transition: transform 1s ease-in-out;
+}
+
+/* Stenen, feen står på, bliver grøn
+   - script.js sætter klassen is-active på den sten, feen flyver hen til */
+.punkt {
+  transition: fill 0.3s;
+}
+
+.punkt.is-active {
+  fill: var(--color-action);
+}
+
+/* Bevægelsesfølsomme brugere: ingen flyve-animation */
+@media (prefers-reduced-motion: reduce) {
+  #fe {
+    transition: none;
+  }
+}
+
+/* Panelet "Udforsk eventet" */
+.panel {
+  padding: var(--space-1);
+  display: grid;
+  gap: var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+/* Punkterne i "Udforsk eventet" (<details>) */
+.accordion {
+  display: grid;
+  gap: var(--space-05);
+}
+
+.accordion-item {
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent); /* brun venstrekant */
+  background: var(--color-surface);
+}
+
+.accordion-item summary {
+  cursor: pointer;
+  padding: var(--space-1);
+}
+
+.accordion-item summary h3 {
+  display: inline;
+}
+
+.accordion-item p {
+  padding: 0 var(--space-1) var(--space-1);
+  color: var(--color-muted);
+}
+
+/* Åbent/hover/aktivt punkt lyser op (bruges sammen med SVG'en) */
+.accordion-item[open],
+.accordion-item:hover,
+.accordion-item.is-active {
+  background: var(--color-action);
+  border-left-color: var(--color-magic);
+}
+
+/* ======================================
+   FORMULAR (form.html)
+   ====================================== */
 .form-page {
   display: grid;
   gap: var(--space-2);
@@ -85,11 +394,117 @@ main > * {
   color: var(--color-muted);
 }
 
+/* Selve formularen */
+.form-page form {
+  --felt: #b8cc72; /* lysegrøn - felter */
+
+  font-family: "Jim Nightshade", cursive; /* skrifttypen hentes i form.html */
+  font-size: 1.2rem;
+  background: var(--color-accent); /* baggrundsfarven på formen */
+  padding: var(--space-2);
+  border-radius: 12px;
+  display: grid;
+  gap: var(--space-05);
+}
+
+/* Felter til tekst: Navn og Email + dropdown: Alder */
+.form-page input[type="text"],
+.form-page input[type="email"],
+.form-page select {
+  background: var(--felt);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  width: min(100%, 25rem);
+  color: var(--color-text); /* mørk tekst, så det man skriver kan læses */
+  font-family: "Cormorant Garamond", serif; /* samme som brødteksten */
+}
+
+/* Dropdown: centreret tekst som i designet */
+.form-page select {
+  text-align: center;
+  text-align-last: center; /* centrerer teksten i Chrome/Safari */
+  cursor: pointer;
+}
+
+/* "Skal besvares" - lille understreget tekst */
+.skal-besvares {
+  font-size: 0.8em; /* mindre tekst - gør tallet mindre for endnu mindre tekst */
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  margin-top: -0.25rem; /* rykker teksten tættere op under feltet */
+  margin-bottom: var(--space-1); /* luft ned til næste felt */
+}
+
+/* Fieldsets i formularen */
+.form-page fieldset {
+  border: none;
+  border-radius: 8px;
+  padding: var(--space-1);
+  margin-block: var(--space-05);
+}
+
+.form-page summary {
+  cursor: pointer;
+}
+
+/* En label med en radio i: knap og tekst på én linje */
+.form-page label:has(input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-block: var(--space-05);
+  cursor: pointer;
+}
+
+/* Radio: rund grøn cirkel */
+.form-page input[type="radio"] {
+  appearance: none; /* fjerner browserens egen knap, så vi kan tegne vores egen */
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--felt);
+  border: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+}
+
+/* Valgt radio = sværd i cirklen */
+.form-page input[type="radio"]:checked {
+  background-image: url("imgs/medieval-sword.png");
+}
+
+/* Valg af dag: vises KUN når "En dags billet" er valgt */
+.vaelg-dag {
+  display: none;
+}
+
+fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
+  display: block;
+}
+
+/* Send-knap */
+.form-page button[type="submit"] {
+  background: var(--felt);
+  color: var(--color-text);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  justify-self: start;
+  cursor: pointer;
+  margin-top: var(--space-1);
+}
+
+/* ======================================
+   OPSAMLING (opsamling.html)
+   ====================================== */
 .opsamling-page {
   display: grid;
   gap: var(--space-2);
   align-items: start;
-
   @media (width > 800px) {
     grid-template-columns: minmax(0, 44ch) minmax(20rem, 1fr);
   }
@@ -105,6 +520,28 @@ main > * {
   color: var(--color-muted);
 }
 
+/* Boksen med brugerens svar (fyldes ud af script.js) */
+.opsamling-placeholder {
+  min-height: -webkit-fill-available;
+  min-height: stretch;
+  padding: var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.opsamling-placeholder dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.opsamling-placeholder dt {
+  font-weight: bold;
+}
+
+/* ======================================
+   404-SIDE (404.html)
+   ====================================== */
 .error-page {
   display: grid;
   gap: var(--space-1);
@@ -113,145 +550,4 @@ main > * {
 
 .error-page p {
   color: var(--color-muted);
-}
-
-/* Header og footer */
-.site-header,
-.site-footer {
-  grid-column: 1 / -1;
-
-  display: grid;
-  grid-template-columns: inherit;
-  background: var(--color-surface);
-}
-
-.header-content,
-.footer-content {
-  grid-column: 2;
-}
-
-.header-content {
-  min-height: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-.site-logo {
-  color: inherit;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.footer-content {
-  padding-block: var(--space-1);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-1);
-  color: var(--color-muted);
-}
-
-/* Navigation */
-[popover] {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-}
-
-.site-nav button {
-  padding: 0.4rem 0.7rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  @media (width > 600px) {
-    display: none;
-  }
-}
-
-.menu {
-  margin: 0;
-  padding: var(--space-1);
-  list-style: none;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  @media (width > 600px) {
-    display: flex;
-    gap: var(--space-1);
-    padding: 0;
-    border: none;
-    background: none;
-    position: static;
-  }
-}
-
-.menu a {
-  display: block;
-  padding: 0.4rem 0;
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 2px solid #0000;
-}
-
-.menu a[aria-current="page"] {
-  border-bottom-color: var(--color-border);
-}
-
-/* Flader */
-.panel,
-.svg-placeholder,
-.form-placeholder,
-.opsamling-placeholder {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-}
-
-.panel {
-  padding: var(--space-1);
-  display: grid;
-  gap: var(--space-1);
-}
-
-.svg-placeholder,
-.opsamling-placeholder {
-  min-height: -webkit-fill-available;
-  min-height: stretch;
-}
-
-.form-placeholder {
-  min-height: -webkit-fill-available;
-  min-height: stretch;
-  padding: var(--space-1);
-}
-
-/* Details */
-.accordion {
-  display: grid;
-  gap: var(--space-05);
-}
-
-.accordion-item {
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-}
-
-.accordion-item p {
-  padding: 0 var(--space-1) var(--space-1);
-  color: var(--color-muted);
-}
-
-/* Knap/link */
-.button {
-  justify-self: start;
-  display: inline-block;
-  padding: 0.5rem 0.8rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: inherit;
-  text-decoration: none;
-}
-
-.logo {
-  max-width: 20px;
 }

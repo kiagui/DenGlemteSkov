@@ -1,44 +1,110 @@
 <!doctype html>
 <html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Den Glemte Skov</title>
-    <link rel="stylesheet" href="./starter.css" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
 
-  <body>
-    <header class="site-header">
-      <div class="header-content">
-        <a class="site-logo" href="./">Den Glemte Skov</a>
-        <img class="logo" src="swords.webp" alt="" />
-        <nav class="site-nav">
-          <button>Menu</button>
-          <ul class="menu" id="menu" popover>
-            <li><a href="./" aria-current="page">Forside</a></li>
-            <li><a href="./svg.html">Interaktiv SVG</a></li>
-            <li><a href="./form.html">Formular</a></li>
-          </ul>
-        </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Den Glemte Skov</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="./starter.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <a class="site-logo" href="./">Den Glemte Skov</a>
+      <!--   <img class="logo" src="swords.webp" alt="" /> -->
+      <nav class="site-nav">
+        <button>Menu</button>
+        <ul class="menu" id="menu" popover>
+          <li><a href="./" aria-current="page">Forside</a></li>
+          <li><a href="./svg.html">Interaktiv SVG</a></li>
+          <li><a href="./form.html">Formular</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Den Glemte Skov</h1>
+    <section class="grid3-2">
+      <div>
+        <h2>Velkommen</h2>
+        <p>Dybt inde bag de gamle egetræer, hvor stierne forsvinder og tågen hænger lavt,
+          ligger Den Glemte Skov. Her bliver urter til eliksirer, rødder til festmåltider
+          og ord til fortællinger, der lever videre ved bålet.</p>
       </div>
-    </header>
+      <img class="img" src="imgs/SVG - potion.png" alt="Potion" />
+    </section>
+    <section class="grid2-3">
+      <h2>Billetter</h2>
+      <p>Vi tilbyder to forskellige billettyper til en magisk tur i skoven. </p>
 
-    <main>
-      <button popovertarget="popup">Open popup</button>
+      <!-- PLACEHOLDER: skift src ud med det rigtige billede -->
+      <img class="sword" src="imgs/sword.png" alt="Sword" />
+      <div><button popovertarget="billetter">Find billet</button></div>
 
-      <div id="popup" popover>
-        <h2>I'm a popup</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+      <div id="billetter" popover>
+        <h2>Billetter</h2>
+        <p>Vælg den billet, der passer til dit eventyr.</p>
+        <ul class="ticket-list">
+          <li>
+            <h3>Dagsbillet</h3>
+            <p>Adgang til skoven og alle workshops</p>
+            <p class="price">249 kr.</p>
+          </li>
+          <li>
+            <h3>Weekendbillet</h3>
+            <p>Hele weekenden, alle workshops og aftenbål</p>
+            <p class="price">599 kr.</p>
+          </li>
+        </ul>
+        <a href="./form.html">Gå til tilmelding</a>
+        <button popovertarget="billetter" popovertargetaction="hide">Luk</button>
       </div>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-content">
-        <p>Den Glemte Skov</p>
-        <p>Kia Gui Just Nielsen & Karoline-Matilde Vangsgaard Pedersen</p>
+    </section>
+    <section class="grid3-2">
+      <div>
+        <h2>Program</h2>
+        <p>Vi har en masse aktiviteter til weekenden. Du kan finde vores program her.</p>
+        <button popovertarget="Program">Program</button>
       </div>
-    </footer>
-    <script src="./script.js"></script>
-  </body>
+      <img src="imgs/Tryllestav.png" alt="Tryllestav" />
+      <div id="Program" popover>
+        <h2>Program</h2>
+        <p>x</p>
+        <ul class="ticket-list">
+          <li>
+            <h3>x</h3>
+            <p>x</p>
+          </li>
+          <li>
+            <h3>x</h3>
+            <p>x</p>
+          </li>
+          <li>
+            <h3>x</h3>
+            <p>x</p>
+          </li>
+        </ul>
+        <a href="./form.html">Gå til tilmelding</a>
+        <button popovertarget="Program" popovertargetaction="hide">Luk</button>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>Den Glemte Skov</p>
+      <p>Kia Gui Just Nielsen & Karoline-Matilde Vangsgaard Pedersen</p>
+    </div>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+
 </html>
