@@ -16,7 +16,7 @@
 <body>
   <header class="site-header">
     <div class="header-content">
-      <a class="site-logo" href="./">Den Glemte Skov</a>
+      <a class="site-logo" href="./"><img src="./logo.svg" alt="Den Glemte Skov - til forsiden" /></a>
       <!--   <img class="logo" src="swords.webp" alt="" /> -->
       <nav class="site-nav">
         <button popovertarget="menu">Menu</button>
@@ -48,43 +48,40 @@
     </section>
     <section class="grid2-3">
       <h2>Billetter</h2>
-      <p>Vi tilbyder to forskellige billettyper til en magisk tur i skoven. </p>
-
-      <!-- PLACEHOLDER: skift src ud med det rigtige billede -->
+      <p>Vi tilbyder to forskellige billettyper til en magisk tur i skoven. Begge billetter giver selvfølig adgang til
+        skoven. Du har mulighed for at deltage i alle aktiviter på begge biletter, så længe du husker at tilmelde dig.
+      </p>
       <img class="sword" src="imgs/sword.png" alt="Sword" />
-      <div><button popovertarget="billetter">Find billet</button></div>
+      <div class="find-billet"><button popovertarget="billetter">Find billet</button></div>
 
       <div id="billetter" popover>
         <h2>Billetter</h2>
         <p>Vælg den billet, der passer til dit eventyr.</p>
-        <ul class="ticket-list">
-          <li>
+        <ul class="billet-typer">
+          <li class="billet-type">
             <h3>Dagsbillet</h3>
             <p>Adgang til skoven og alle workshops</p>
             <p class="price">249 kr.</p>
           </li>
-          <li>
+          <li class="billet-type">
             <h3>Weekendbillet</h3>
             <p>Hele weekenden, alle workshops og aftenbål</p>
             <p class="price">599 kr.</p>
           </li>
         </ul>
-        <a href="./form.html">Gå til tilmelding</a>
-        <button popovertarget="billetter" popovertargetaction="hide">Luk</button>
+        <div class="billetter-knapper">
+          <a class="button" href="./form.html">Gå til tilmelding</a>
+          <button popovertarget="billetter" popovertargetaction="hide">Luk</button>
+        </div>
       </div>
     </section>
     <section class="grid3-2">
       <div>
         <h2>Program</h2>
         <p>Vi har en masse aktiviteter til weekenden. Du kan finde vores program her.</p>
-        <button popovertarget="program">Program</button>
+        <div class="program-knapper"><button popovertarget="program">Program</button></div>
       </div>
-      <img src="imgs/Tryllestav.png" alt="Tryllestav" />
-      <!-- Program-popover
-           - .program-dage = de tre dage (vises som kolonner på brede skærme)
-           - .program-punkter = punkterne på en dag, sorteret efter tid
-           - .tid = klokkeslættet i venstre side
-           - .faelles = fællesaktiviteter (får en lilla kant i style.css) -->
+      <img class="wand" src="imgs/Tryllestav.png" alt="Tryllestav" />
       <div id="program" popover>
         <h2>Program</h2>
         <p>Vi har samlet de vigtigste programpunkter til dig her</p>
@@ -98,10 +95,12 @@
               <li><span class="tid">kl. 9</span> Første Potion Workshop</li>
               <li><span class="tid">kl. 10</span> Første Sword Workshop</li>
               <li><span class="tid">kl. 11</span> Anden Wand Workshop</li>
-              <li class="faelles"><span class="tid">kl. 12</span> Første fællesaktivitet: Potionkamp på kamppladsen. Info følger på dagen</li>
+              <li class="faelles"><span class="tid">kl. 12</span> Første fællesaktivitet: Potionkamp på kamppladsen.
+                Info følger på dagen</li>
               <li><span class="tid">kl. 13</span> Anden Sword Workshop</li>
               <li><span class="tid">kl. 13</span> Anden Potion Workshop</li>
-              <li class="faelles"><span class="tid">kl. 14</span> Anden fællesaktivitet: Der er krig mellem magikerne og menneskerne</li>
+              <li class="faelles"><span class="tid">kl. 14</span> Anden fællesaktivitet: Der er krig mellem magikerne og
+                menneskerne</li>
               <li><span class="tid">kl. 15</span> Tredje Wand Workshop</li>
               <li><span class="tid">kl. 16</span> Tredje Sword Workshop</li>
             </ul>
@@ -114,10 +113,12 @@
               <li><span class="tid">kl. 9</span> Første Potion Workshop</li>
               <li><span class="tid">kl. 10</span> Første Sword Workshop</li>
               <li><span class="tid">kl. 11</span> Anden Wand Workshop</li>
-              <li class="faelles"><span class="tid">kl. 12</span> Første fællesaktivitet: Potionkamp på kamppladsen. Info følger på dagen</li>
+              <li class="faelles"><span class="tid">kl. 12</span> Første fællesaktivitet: Potionkamp på kamppladsen.
+                Info følger på dagen</li>
               <li><span class="tid">kl. 13</span> Anden Sword Workshop</li>
               <li><span class="tid">kl. 13</span> Anden Potion Workshop</li>
-              <li class="faelles"><span class="tid">kl. 14</span> Anden fællesaktivitet: Det onde prøver at rekruttere flere folk</li>
+              <li class="faelles"><span class="tid">kl. 14</span> Anden fællesaktivitet: Det onde prøver at rekruttere
+                flere folk</li>
               <li><span class="tid">kl. 15</span> Tredje Wand Workshop</li>
               <li><span class="tid">kl. 16</span> Tredje Sword Workshop</li>
             </ul>
@@ -131,7 +132,8 @@
               <li><span class="tid">kl. 11</span> Anden Wand Workshop</li>
               <li><span class="tid">kl. 13</span> Anden Sword Workshop</li>
               <li><span class="tid">kl. 13</span> Anden Potion Workshop</li>
-              <li class="faelles"><span class="tid">kl. 14</span> Vi siger farvel med en sidste potionkamp på kamppladsen. Info følger på dagen</li>
+              <li class="faelles"><span class="tid">kl. 14</span> Vi siger farvel med en sidste potionkamp på
+                kamppladsen. Info følger på dagen</li>
             </ul>
           </li>
         </ul>

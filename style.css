@@ -163,6 +163,15 @@ button:hover,
   text-decoration: none;
 }
 
+/* Logoet (logo.svg) i headeren
+   - height bestemmer størrelsen, width: auto holder formen (ikke strakt)
+   - display: block fjerner det lille mellemrum under billedet */
+.site-logo img {
+  display: block;
+  height: 2.5rem; /* gør tallet større for et større logo */
+  width: auto;
+}
+
 /* Menu-knappen (vises kun på mobil) */
 .site-nav button {
   padding: 0.4rem 0.7rem;
@@ -239,6 +248,7 @@ button:hover,
 .grid2-3 {
   display: grid;
   grid-template-columns: 2fr 3fr;
+  column-gap: var(--space-3); /* luft mellem sværdet og teksten/knappen - gør tallet større for mere luft */
 }
 
 .title {
@@ -254,21 +264,23 @@ button:hover,
   align-self: center;
 }
 
-/* Popover: Billetter */
-#billetter {
-  margin: auto; /* centrerer den vandret og lodret */
-  padding: 2rem;
-  background: var(--color-muted);
-  border-radius: 12px;
-  max-width: 40rem; /* så den ikke bliver alt for bred */
-}
+/* ======================================
+   POPOVERS: Billetter og Program
+   - De to popovers deler de samme regler, så de ser ens ud
+   - Billetter har kun 2 kort, så den er smallere (max 45rem)
+   ====================================== */
 
-/* Popover: Program
+/* Boksen
    - Lys baggrund og mørk tekst, så det er nemt at læse
    - max-height + overflow: auto = man kan scrolle inde i den, hvis skærmen er lille */
+#billetter,
 #program {
   margin: auto; /* centrerer den vandret og lodret */
-  padding: clamp(1rem, 4vw, 2rem); /* mindre luft på mobil, mere på store skærme */
+  padding: clamp(
+    1rem,
+    4vw,
+    2rem
+  ); /* mindre luft på mobil, mere på store skærme */
   background: var(--color-page);
   color: var(--color-text);
   border: 2px solid var(--color-accent);
@@ -278,16 +290,24 @@ button:hover,
   overflow: auto;
 }
 
+/* Billetter har kun 2 kort, så den skal ikke være lige så bred som programmet */
+#billetter {
+  width: min(100% - 2rem, 45rem);
+}
+
+#billetter h2,
 #program h2 {
   font-size: 2.5rem;
 }
 
+#billetter > p,
 #program > p {
   margin-bottom: var(--space-2); /* luft under introteksten */
 }
 
-/* De tre dage: kolonner på brede skærme, under hinanden på mobil
+/* Kolonner på brede skærme, under hinanden på mobil
    - auto-fit + minmax = så mange kolonner, der er plads til (mindst 16rem brede) */
+.billet-typer,
 .program-dage {
   list-style: none; /* fjerner prikkerne */
   margin: 0 0 var(--space-2);
@@ -297,18 +317,35 @@ button:hover,
   gap: var(--space-1);
 }
 
-/* Hver dag er et lille kort */
+/* Hver billet er et lille kort */
+.billet-type,
 .program-dag {
   padding: var(--space-1);
   background: var(--color-main);
   border-radius: 8px;
 }
 
+.billet-type h3,
 .program-dag h3 {
   font-size: 1.8rem;
   padding-bottom: 0.25rem;
   margin-bottom: var(--space-05);
-  border-bottom: 1px solid var(--color-accent); /* streg under datoen */
+  border-bottom: 1px solid var(--color-accent); /* streg under titlen */
+}
+
+/* Billetkortet: teksten øverst, prisen skubbes ned i bunden
+   - flex + margin-top: auto på prisen = priserne står på samme højde i begge kort */
+.billet-type {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-05);
+}
+
+.billet-type .price {
+  margin-top: auto;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-accent-dark); /* samme farve som tiderne i programmet */
 }
 
 /* Punkterne på en dag */
@@ -343,14 +380,18 @@ button:hover,
 }
 
 /* "Gå til tilmelding" og "Luk" ved siden af hinanden */
-.program-knapper {
+.billetter-knapper,
+.program-knapper,
+.find-billet {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1);
   align-items: center;
 }
 
-.program-knapper button {
+.billetter-knapper button,
+.program-knapper button,
+.find-billet button {
   padding: 0.5rem 0.8rem;
   border: 1px solid var(--color-border);
   background: var(--color-page);
@@ -378,6 +419,27 @@ button:hover,
 
 @media (prefers-reduced-motion: reduce) {
   .sword {
+    animation: none;
+  }
+}
+/* === Wand ==== */
+@keyframes draw-wand {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.wand {
+  animation: draw-wand ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wand {
     animation: none;
   }
 }
@@ -779,7 +841,7 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   }
 }
 
-/* ===== VARIATION 2: Weekend billet = "Skovvogter" =====
+/* ===== VARIATION 2: Weekend billet =====
    Kun variablerne skiftes - resten af billetten er den samme */
 .opsamling-placeholder[data-billet="weekend"] {
   --billet-bg: #2c3b27; /* mørk nat-skov */

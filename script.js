@@ -50,12 +50,6 @@ if (svgPlaceholder) {
 // Opsamlingsside
 const opsamlingPlaceholder = document.querySelector(".opsamling-placeholder");
 
-// ##################################################
-// NYT AF CLAUDE – START
-// Viser brugerens svar fra form.html på opsamlingssiden.
-//   - Formularen sender svarene i URL'en: opsamling.html?navn=Kia&billet=en-dag...
-//   - params.get("navn") henter værdien fra feltet med name="navn"
-// ##################################################
 if (opsamlingPlaceholder) {
   const params = new URLSearchParams(window.location.search);
 
@@ -107,9 +101,7 @@ if (opsamlingPlaceholder) {
   // Byg indholdet
 
   // ---------- Titel på billetten ----------
-  // Forskellig titel alt efter billettype:
-  //   en dags billet = "Dagsvandrer", weekend billet = "Skovvogter"
-  const titler = { "en-dag": "Dagsvandrer", weekend: "Skovvogter" };
+  const titler = { "en-dag": "Dagsbillet", weekend: "Weekendbillet" };
   const overskrift = document.createElement("h2");
   overskrift.textContent = titler[billet] || "Din tilmelding";
   opsamlingPlaceholder.append(overskrift);
@@ -144,7 +136,6 @@ if (opsamlingPlaceholder) {
   nr.textContent = "Billet nr. " + Math.floor(1000 + Math.random() * 9000);
   opsamlingPlaceholder.append(nr);
 }
-// NYT AF CLAUDE – SLUT (opsamlingsside)
 
 // Formular: "Fjern valg"-knap i hver workshop
 //   - Radio-knapper kan ikke klikkes "af" igen, så knappen gør det for en
