@@ -14,10 +14,15 @@ if (svgPlaceholder) {
   const sten = document.querySelectorAll(".punkt");
 
   // Hvor langt feen skal flyttes for at stå på hver sten.
+  //   - Feen er tegnet stående på sten 1, så sten 1 = { x: 0, y: 0 }
+  //   - De andre = stenens cx/cy minus sten 1's cx/cy (se <ellipse> i svg.html)
+  //       Sten 1 (Wand Workshop):   cx 282.49, cy 355.52
+  //       Sten 2 (Sword Workshop):  cx 1035.9, cy 355.52 -> x: 1035.9 - 282.49 = 753.41
+  //       Sten 3 (Potion Workshop): cx 693.69, cy 752.58 -> x: 411.2, y: 397.06
   const positioner = {
     1: { x: 0, y: 0 },
-    2: { x: 559.57, y: 0 },
-    3: { x: 281.31, y: 282.18 },
+    2: { x: 753.41, y: 0 },
+    3: { x: 411.2, y: 397.06 },
   };
 
   // Flytter feen hen til et punkt (1, 2 eller 3)
@@ -53,6 +58,15 @@ const opsamlingPlaceholder = document.querySelector(".opsamling-placeholder");
 // ##################################################
 if (opsamlingPlaceholder) {
   const params = new URLSearchParams(window.location.search);
+
+  // ---------- VARIATION: billettypen styrer billettens udseende ----------
+  //   - Henter det valgte billet-radio fra URL'en ("en-dag" eller "weekend")
+  //   - Hvis der ikke er valgt noget (fx hvis man åbner siden direkte),
+  //     bruges "en-dag" som standard
+  //   - dataset.billet = "weekend" giver <article data-billet="weekend">
+  //   - I style.css skifter [data-billet="weekend"] farverne på billetten
+  const billet = params.get("billet") || "en-dag";
+  opsamlingPlaceholder.dataset.billet = billet;
 
   // "Oversættelser" fra value (det der sendes) til pæn tekst
   const tekster = {
@@ -91,9 +105,23 @@ if (opsamlingPlaceholder) {
   ];
 
   // Byg indholdet
+
+  // ---------- Titel på billetten ----------
+  // Forskellig titel alt efter billettype:
+  //   en dags billet = "Dagsvandrer", weekend billet = "Skovvogter"
+  const titler = { "en-dag": "Dagsvandrer", weekend: "Skovvogter" };
   const overskrift = document.createElement("h2");
-  overskrift.textContent = "Din tilmelding";
+  overskrift.textContent = titler[billet] || "Din tilmelding";
   opsamlingPlaceholder.append(overskrift);
+
+  // ---------- Voksegl ----------
+  // En rund <div> med "DGS" (Den Glemte Skov).
+  // Den placeres i øverste højre hjørne af billetten med CSS (.segl)
+  const segl = document.createElement("div");
+  segl.className = "segl";
+  segl.textContent = "DGS";
+  segl.setAttribute("aria-hidden", "true"); // pynt - skærmlæsere springer den over
+  opsamlingPlaceholder.append(segl);
 
   const liste = document.createElement("dl");
   linjer.forEach(([titel, vaerdi]) => {
@@ -106,7 +134,17 @@ if (opsamlingPlaceholder) {
     liste.append(dt, dd);
   });
   opsamlingPlaceholder.append(liste);
+
+  // ---------- Billetnummer ----------
+  // Math.random() giver et tal mellem 0 og 1.
+  // * 9000 + 1000 og Math.floor() gør det til et helt tal mellem 1000 og 9999.
+  // Stregkoden under nummeret laves i CSS (.billet-nr::after)
+  const nr = document.createElement("p");
+  nr.className = "billet-nr";
+  nr.textContent = "Billet nr. " + Math.floor(1000 + Math.random() * 9000);
+  opsamlingPlaceholder.append(nr);
 }
+// NYT AF CLAUDE – SLUT (opsamlingsside)
 
 // Formular: "Fjern valg"-knap i hver workshop
 //   - Radio-knapper kan ikke klikkes "af" igen, så knappen gør det for en

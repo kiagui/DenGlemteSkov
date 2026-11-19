@@ -5,10 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Opsamling | Den Glemte Skov</title>
+  <!-- Skrifttyper: Cormorant Garamond (brødtekst) + Jim Nightshade (titlen på billetten) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jim+Nightshade&display=swap">
   <link rel="stylesheet" href="./starter.css" />
   <link rel="stylesheet" href="./style.css" />
 </head>
@@ -18,11 +19,11 @@
     <div class="header-content">
       <a class="site-logo" href="./">Den Glemte Skov</a>
       <nav class="site-nav">
-        <button>Menu</button>
+        <button popovertarget="menu">Menu</button>
         <ul class="menu" id="menu" popover>
           <li><a href="./">Forside</a></li>
-          <li><a href="./svg.html">Interaktiv SVG</a></li>
-          <li><a href="./form.html" aria-current="page">Formular</a></li>
+          <li><a href="./svg.html">Workshops</a></li>
+          <li><a href="./form.html" aria-current="page">Tilmelding</a></li>
         </ul>
       </nav>
     </div>
@@ -38,6 +39,11 @@
         </div>
       </div>
 
+      <!-- BILLETTEN
+           Er tom her i HTML'en - script.js fylder den ud med brugerens svar.
+           script.js sætter også data-billet="en-dag" eller data-billet="weekend"
+           på den, og det bestemmer, hvilken af de to variationer der vises
+           (se "OPSAMLING SOM BILLET" i style.css). -->
       <article class="opsamling-placeholder"></article>
     </section>
   </main>

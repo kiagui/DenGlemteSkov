@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jim+Nightshade&display=swap">
   <link rel="stylesheet" href="./starter.css" />
   <link rel="stylesheet" href="./style.css" />
 </head>
@@ -19,18 +19,24 @@
       <a class="site-logo" href="./">Den Glemte Skov</a>
       <!--   <img class="logo" src="swords.webp" alt="" /> -->
       <nav class="site-nav">
-        <button>Menu</button>
+        <button popovertarget="menu">Menu</button>
         <ul class="menu" id="menu" popover>
           <li><a href="./" aria-current="page">Forside</a></li>
-          <li><a href="./svg.html">Interaktiv SVG</a></li>
-          <li><a href="./form.html">Formular</a></li>
+          <li><a href="./svg.html">Workshops</a></li>
+          <li><a href="./form.html">Tilmelding</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <h1>Den Glemte Skov</h1>
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="title">Den Glemte Skov</h1>
+        <p>En weekend med gamle kunster, eliksirer og fortællinger ved bålet</p>
+        <p class="hero-date">18.–20. juni · Dybt inde i skoven</p>
+      </div>
+    </section>
     <section class="grid3-2">
       <div>
         <h2>Velkommen</h2>
@@ -71,28 +77,69 @@
       <div>
         <h2>Program</h2>
         <p>Vi har en masse aktiviteter til weekenden. Du kan finde vores program her.</p>
-        <button popovertarget="Program">Program</button>
+        <button popovertarget="program">Program</button>
       </div>
       <img src="imgs/Tryllestav.png" alt="Tryllestav" />
-      <div id="Program" popover>
+      <!-- Program-popover
+           - .program-dage = de tre dage (vises som kolonner på brede skærme)
+           - .program-punkter = punkterne på en dag, sorteret efter tid
+           - .tid = klokkeslættet i venstre side
+           - .faelles = fællesaktiviteter (får en lilla kant i style.css) -->
+      <div id="program" popover>
         <h2>Program</h2>
-        <p>x</p>
-        <ul class="ticket-list">
-          <li>
-            <h3>x</h3>
-            <p>x</p>
+        <p>Vi har samlet de vigtigste programpunkter til dig her</p>
+
+        <ul class="program-dage">
+          <li class="program-dag">
+            <h3>18. juni</h3>
+            <ul class="program-punkter">
+              <li><span class="tid">Hele dagen</span> Åben bålplads med historiefortællinger</li>
+              <li><span class="tid">kl. 9</span> Første Wand Workshop</li>
+              <li><span class="tid">kl. 9</span> Første Potion Workshop</li>
+              <li><span class="tid">kl. 10</span> Første Sword Workshop</li>
+              <li><span class="tid">kl. 11</span> Anden Wand Workshop</li>
+              <li class="faelles"><span class="tid">kl. 12</span> Første fællesaktivitet: Potionkamp på kamppladsen. Info følger på dagen</li>
+              <li><span class="tid">kl. 13</span> Anden Sword Workshop</li>
+              <li><span class="tid">kl. 13</span> Anden Potion Workshop</li>
+              <li class="faelles"><span class="tid">kl. 14</span> Anden fællesaktivitet: Der er krig mellem magikerne og menneskerne</li>
+              <li><span class="tid">kl. 15</span> Tredje Wand Workshop</li>
+              <li><span class="tid">kl. 16</span> Tredje Sword Workshop</li>
+            </ul>
           </li>
-          <li>
-            <h3>x</h3>
-            <p>x</p>
+          <li class="program-dag">
+            <h3>19. juni</h3>
+            <ul class="program-punkter">
+              <li><span class="tid">Hele dagen</span> Åben bålplads med historiefortællinger</li>
+              <li><span class="tid">kl. 9</span> Første Wand Workshop</li>
+              <li><span class="tid">kl. 9</span> Første Potion Workshop</li>
+              <li><span class="tid">kl. 10</span> Første Sword Workshop</li>
+              <li><span class="tid">kl. 11</span> Anden Wand Workshop</li>
+              <li class="faelles"><span class="tid">kl. 12</span> Første fællesaktivitet: Potionkamp på kamppladsen. Info følger på dagen</li>
+              <li><span class="tid">kl. 13</span> Anden Sword Workshop</li>
+              <li><span class="tid">kl. 13</span> Anden Potion Workshop</li>
+              <li class="faelles"><span class="tid">kl. 14</span> Anden fællesaktivitet: Det onde prøver at rekruttere flere folk</li>
+              <li><span class="tid">kl. 15</span> Tredje Wand Workshop</li>
+              <li><span class="tid">kl. 16</span> Tredje Sword Workshop</li>
+            </ul>
           </li>
-          <li>
-            <h3>x</h3>
-            <p>x</p>
+          <li class="program-dag">
+            <h3>20. juni</h3>
+            <ul class="program-punkter">
+              <li><span class="tid">kl. 9</span> Første Wand Workshop</li>
+              <li><span class="tid">kl. 9</span> Første Potion Workshop</li>
+              <li><span class="tid">kl. 10</span> Første Sword Workshop</li>
+              <li><span class="tid">kl. 11</span> Anden Wand Workshop</li>
+              <li><span class="tid">kl. 13</span> Anden Sword Workshop</li>
+              <li><span class="tid">kl. 13</span> Anden Potion Workshop</li>
+              <li class="faelles"><span class="tid">kl. 14</span> Vi siger farvel med en sidste potionkamp på kamppladsen. Info følger på dagen</li>
+            </ul>
           </li>
         </ul>
-        <a href="./form.html">Gå til tilmelding</a>
-        <button popovertarget="Program" popovertargetaction="hide">Luk</button>
+
+        <div class="program-knapper">
+          <a class="button" href="./form.html">Gå til tilmelding</a>
+          <button popovertarget="program" popovertargetaction="hide">Luk</button>
+        </div>
       </div>
       </div>
     </section>
