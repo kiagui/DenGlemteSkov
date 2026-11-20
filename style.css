@@ -264,11 +264,58 @@ button:hover,
   align-items: center;
 }
 
+/* Billet-afsnittet: sværdet til venstre, overskrift + tekst + knap til højre
+   - grid-template-areas giver hvert område et navn, så man kan se layoutet:
+       sværdet fylder venstre kolonne i alle tre rækker
+   - align-content: center = det hele står samlet i midten (ingen stor tom plads) */
 .grid2-3 {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  column-gap: var(--space-3);
-  /* luft mellem sværdet og teksten/knappen - gør tallet større for mere luft */
+  grid-template-areas:
+    "svaerd titel"
+    "svaerd tekst"
+    "svaerd knap";
+  align-content: center;
+  align-items: center;
+  column-gap: var(--space-3); /* luft mellem sværdet og teksten - større tal = mere luft */
+  row-gap: var(--space-1);
+}
+
+.grid2-3 h2 {
+  grid-area: titel;
+}
+
+.grid2-3 p {
+  grid-area: tekst;
+}
+
+.grid2-3 .sword {
+  grid-area: svaerd;
+  width: 100%; /* sværdet fylder sin kolonne, men aldrig mere */
+}
+
+.grid2-3 .find-billet {
+  grid-area: knap;
+}
+
+/* Det grønne bånd i fuld bredde
+   - grid-column: 1 / -1 = båndet går fra kant til kant
+   - grid-template-columns: inherit = samme kolonner som resten af siden,
+     så indholdet (> *) kan lægges i midterkolonnen og flugte med resten */
+.billet-side {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  background-color: var(--farve-grøn-mørk);
+}
+
+.billet-side > * {
+  grid-column: 2;
+}
+
+/* Mørkebrun overskrift - den lyse brune er svær at læse på grøn */
+.billet-side h2 {
+  color: var(--farve-brun-mørk);
 }
 
 /* Gør titlen større og centret */
