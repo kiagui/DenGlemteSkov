@@ -1,29 +1,38 @@
-/* ======================================
-   VARIABLER
-   ====================================== */
-html {
-  --color-page: #f5e8df; /* creme - baggrund på alle sider */
-  --color-main: #b8cc72; /* lysegrøn - header, footer, knapper, aktivt menupunkt, hover, åbne bokse og den grønne sten (samme som felterne i formularen) */
-  --color-surface: #92a851; /* mørkere grøn - paneler, flader og lukkede bokse */
-  --color-accent: #ab7f5c; /* brun - overskrifter, kanter, accenter */
-  --color-accent-dark: #603813; /* mørkebrun - samme brune farve, bare mørkere (tekst på svg.html) */
-  --color-text: #2f3a2a; /* mørk skovgrøn - al tekst */
-  --color-muted: #4f5e48; /* dæmpet grøn - undertekst (læsbar, ikke grå) */
-  --color-border: #ab7f5c; /* brun - kanter */
-  --color-magic: #c76fe8; /* lilla fra potion-flasken - "magisk" highlight */
+/* ==================================================
+   STYLE.CSS - Den Glemte Skov
+   Filen er delt op i afsnit med #region ... #endregion.
+   - Fold alt sammen: ⌘ + K, derefter ⌘ + 0
+     -> så kan du kun se overskrifterne
+   - Fold alt ud igen: ⌘ + K, derefter ⌘ + J
+   - Klik på pilen ud for en #region for at åbne kun det afsnit
+   ================================================== */
 
+/* #region VARIABLER */
+html {
+  /* FARVER - alle starter med --farve-, så VS Code foreslår dem, når du skriver --farve */
+  --farve-sidebaggrund: #f5e8df; /* creme - baggrunden på alle sider */
+  --farve-grøn-lys: #b8cc72; /* lysegrøn - header, footer, knapper, åbne bokse, den grønne sten og felterne i formularen */
+  --farve-grøn-mørk: #92a851; /* mørkere grøn - de lukkede bokse på svg-siden og den valgte alder i dropdown'en */
+  --farve-brun: #ab7f5c; /* brun - overskrifter, formularens baggrund og panelet på svg-siden */
+  --farve-brun-mørk: #603813; /* mørkebrun - teksten på svg-siden, tiderne i programmet og priserne */
+  --farve-tekst: #2f3a2a; /* mørk skovgrøn - almindelig tekst */
+  --farve-tekst-dæmpet: #4f5e48; /* dæmpet grøn - undertekst og introtekster */
+  --farve-kant: #ab7f5c; /* brun - kanter og rammer */
+  --farve-magi: #c76fe8; /* lilla fra potion-flasken - glød på knapper og fællesaktiviteter */
+
+  /* AFSTANDE */
   --space-05: 0.5rem;
   --space-1: 1rem;
   --space-2: 2rem;
   --space-3: 3rem;
 
-  background: var(--color-page);
-  color: var(--color-text);
+  background: var(--farve-sidebaggrund);
+  color: var(--farve-tekst);
 }
 
-/* ======================================
-   GLOBALT LAYOUT (alle sider)
-   ====================================== */
+/* #endregion */
+
+/* #region GLOBALT LAYOUT (alle sider) */
 body {
   margin: 0;
   min-height: 100svh;
@@ -55,13 +64,13 @@ p {
 /* Overskrifter i brun accent */
 h1,
 h2 {
-  color: var(--color-accent);
+  color: var(--farve-brun);
 }
 
 /* Skrifttyper
    - Brødtekst: Cormorant Garamond (hentes i <head> på hver side)
    - Overskrifter (h1, h2, h3): Jim Nightshade (hentes også i <head> på hver side)
-   - Formularen har sin egen skrifttype (se FORMULAR længere nede) */
+   - Formularen bruger også brødteksten (Cormorant Garamond) */
 body {
   font-family: "Cormorant Garamond", serif;
 }
@@ -73,18 +82,23 @@ h3 {
   font-weight: 400;
 }
 
-/* Fokus på links, knapper og formularfelter */
+/* Fokus på links, knapper og formularfelter
+   - Viser en grøn ramme om det, man står på, når man bruger TASTATURET (Tab)
+   - Ved klik med musen vises rammen normalt ikke
+   - outline-offset: rammen sidder 2px uden for elementet */
 :focus-visible {
-  outline: 3px solid var(--color-main);
+  outline: 3px solid var(--farve-grøn-lys);
   outline-offset: 2px;
 }
 
-/* Formularfelter (standard) */
+/* Formularfelter (standard): hvid baggrund og tynd brun kant
+   - Reserve-udseende for felter på hele sitet
+   - Felterne i formularen overskrives af egne regler under FORMULAR (grønne, ingen kant) */
 input,
 textarea,
 select {
   background: #fff;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--farve-kant);
 }
 
 /* Nulstil popovers (menuen og popovers på forsiden) */
@@ -100,14 +114,14 @@ select {
   justify-self: start;
   display: inline-block;
   padding: 0.5rem 0.8rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-main);
+  border: 1px solid var(--farve-kant);
+  background: var(--farve-grøn-lys);
   color: inherit;
   text-decoration: none;
 }
 
 .button:hover {
-  background: var(--color-main);
+  background: var(--farve-grøn-lys);
 }
 
 /* Lilla magisk glød på ALLE knapper, når man holder musen over
@@ -121,11 +135,11 @@ button:hover,
 /* Animationen: gløder lilla i midten af hvert gennemløb */
 @keyframes glow {
   50% {
-    box-shadow: 0 0 16px var(--color-magic);
+    box-shadow: 0 0 16px var(--farve-magi);
   }
 }
 
-/* Bevægelsesfølsomme brugere: ingen glød-animation */
+/* Bevægelsesfølsomme brugere: ingen glød-animation - hvis brugeren har det i sine indstillinger */
 @media (prefers-reduced-motion: reduce) {
   button:hover,
   .button:hover {
@@ -133,15 +147,15 @@ button:hover,
   }
 }
 
-/* ======================================
-   HEADER, NAVIGATION OG FOOTER (alle sider)
-   ====================================== */
+/* #endregion */
+
+/* #region HEADER, NAVIGATION OG FOOTER (alle sider) */
 .site-header,
 .site-footer {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: inherit;
-  background: var(--color-main);
+  background: var(--farve-grøn-lys);
 }
 
 .header-content,
@@ -175,8 +189,8 @@ button:hover,
 /* Menu-knappen (vises kun på mobil) */
 .site-nav button {
   padding: 0.4rem 0.7rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-main);
+  border: 1px solid var(--farve-kant);
+  background: var(--farve-grøn-lys);
   @media (width > 600px) {
     display: none;
   }
@@ -186,8 +200,9 @@ button:hover,
   margin: 0;
   padding: var(--space-1);
   list-style: none;
-  background: var(--color-main);
-  border: 1px solid var(--color-border);
+  background: var(--farve-grøn-lys);
+  border: 1px solid var(--farve-kant);
+  inset: 4.5rem 1rem auto auto; /* inset betyder top, højre, bund, venstre - bliver ignoret hvis skærmen er større end 660px */
   @media (width > 600px) {
     display: flex;
     gap: var(--space-1);
@@ -209,7 +224,7 @@ button:hover,
 /* Aktiv side og hover: streg under menupunktet */
 .menu a[aria-current="page"],
 .menu a:hover {
-  border-bottom-color: var(--color-page);
+  border-bottom-color: var(--farve-sidebaggrund);
 }
 
 .footer-content {
@@ -218,12 +233,12 @@ button:hover,
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-1);
-  color: var(--color-text);
+  color: var(--farve-tekst);
 }
 
-/* ======================================
-   FORSIDE (index.html)
-   ====================================== */
+/* #endregion */
+
+/* #region FORSIDE (index.html) */
 
 /* Hero med baggrundsbillede
    - grid-column: 1 / -1 -> går i fuld bredde (ikke kun midterkolonnen)
@@ -235,6 +250,10 @@ button:hover,
   place-items: center;
   text-align: center;
   color: white;
+  /* To baggrunde oven på hinanden (det første ligger øverst):
+     - linear-gradient(#0008, #0008) = halvgennemsigtigt sort lag, gør billedet mørkere,
+       så teksten er nem at læse (#0008 = sort, 8 = ca. 50% gennemsigtig)
+     - url(...) = indsætter skovbilledet nederst i lagene */
   background-image: linear-gradient(#0008, #0008), url("imgs/forrest.webp");
   background-size: cover;
   background-position: center;
@@ -248,14 +267,17 @@ button:hover,
 .grid2-3 {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  column-gap: var(--space-3); /* luft mellem sværdet og teksten/knappen - gør tallet større for mere luft */
+  column-gap: var(--space-3);
+  /* luft mellem sværdet og teksten/knappen - gør tallet større for mere luft */
 }
 
+/* Gør titlen større og centret */
 .title {
   font-size: 96px;
   text-align: center;
 }
-/* Billeder på forsiden */
+
+/* Potion styling */
 .img {
   width: 100%;
   max-width: clamp(80px, 20vw, 250px);
@@ -264,14 +286,10 @@ button:hover,
   align-self: center;
 }
 
-/* ======================================
-   POPOVERS: Billetter og Program
-   - De to popovers deler de samme regler, så de ser ens ud
-   - Billetter har kun 2 kort, så den er smallere (max 45rem)
-   ====================================== */
+/* #endregion */
 
+/* #region POPOVERS: Billetter og Program */
 /* Boksen
-   - Lys baggrund og mørk tekst, så det er nemt at læse
    - max-height + overflow: auto = man kan scrolle inde i den, hvis skærmen er lille */
 #billetter,
 #program {
@@ -281,9 +299,9 @@ button:hover,
     4vw,
     2rem
   ); /* mindre luft på mobil, mere på store skærme */
-  background: var(--color-page);
-  color: var(--color-text);
-  border: 2px solid var(--color-accent);
+  background: var(--farve-sidebaggrund);
+  color: var(--farve-tekst);
+  border: 2px solid var(--farve-brun);
   border-radius: 12px;
   width: min(100% - 2rem, 70rem); /* fylder skærmen, men højst 70rem */
   max-height: 90vh;
@@ -300,6 +318,9 @@ button:hover,
   font-size: 2.5rem;
 }
 
+/* Luft under introteksten i popup-boksene
+   - > betyder "direkte inde i": rammer kun introteksten,
+     ikke teksten og prisen inde i kortene */
 #billetter > p,
 #program > p {
   margin-bottom: var(--space-2); /* luft under introteksten */
@@ -321,7 +342,7 @@ button:hover,
 .billet-type,
 .program-dag {
   padding: var(--space-1);
-  background: var(--color-main);
+  background: var(--farve-grøn-lys);
   border-radius: 8px;
 }
 
@@ -330,7 +351,7 @@ button:hover,
   font-size: 1.8rem;
   padding-bottom: 0.25rem;
   margin-bottom: var(--space-05);
-  border-bottom: 1px solid var(--color-accent); /* streg under titlen */
+  border-bottom: 1px solid var(--farve-brun); /* streg under titlen */
 }
 
 /* Billetkortet: teksten øverst, prisen skubbes ned i bunden
@@ -345,7 +366,7 @@ button:hover,
   margin-top: auto;
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--color-accent-dark); /* samme farve som tiderne i programmet */
+  color: var(--farve-brun-mørk); /* samme farve som tiderne i programmet */
 }
 
 /* Punkterne på en dag */
@@ -371,12 +392,12 @@ button:hover,
 
 .tid {
   font-weight: 700;
-  color: var(--color-accent-dark);
+  color: var(--farve-brun-mørk);
 }
 
 /* Fællesaktiviteter skiller sig ud med en lilla kant */
 .program-punkter .faelles {
-  border-left-color: var(--color-magic);
+  border-left-color: var(--farve-magi);
 }
 
 /* "Gå til tilmelding" og "Luk" ved siden af hinanden */
@@ -393,8 +414,8 @@ button:hover,
 .program-knapper button,
 .find-billet button {
   padding: 0.5rem 0.8rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-page);
+  border: 1px solid var(--farve-kant);
+  background: var(--farve-sidebaggrund);
   font: inherit;
   cursor: pointer;
 }
@@ -412,9 +433,10 @@ button:hover,
 .sword {
   animation: draw-sword ease-out both;
   animation-timeline: view();
-  /* Starter når sværdet kommer ind i bunden af skærmen,
-     og er færdigt når HELE sværdet er inde på skærmen */
-  animation-range: entry 0% entry 100%;
+  /* contain 0%  = starter først, når HELE sværdet er inde på skærmen
+     contain 80px = er færdigt, når man har scrollet 80px videre
+     (fast antal px, så den også bliver færdig nederst på siden) */
+  animation-range: contain 0% contain 80px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -435,7 +457,7 @@ button:hover,
 .wand {
   animation: draw-wand ease-out both;
   animation-timeline: view();
-  animation-range: entry 0% entry 100%;
+  animation-range: contain 0% contain 80px; /* samme som sværdet */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -444,9 +466,9 @@ button:hover,
   }
 }
 
-/* ======================================
-   SVG-SIDE (svg.html)
-   ====================================== */
+/* #endregion */
+
+/* #region SVG-SIDE (svg.html) */
 .svg-page {
   display: grid;
   gap: var(--space-2);
@@ -459,7 +481,7 @@ button:hover,
 }
 
 .svg-intro p {
-  color: var(--color-muted);
+  color: var(--farve-tekst-dæmpet);
 }
 
 .svg-layout {
@@ -496,7 +518,7 @@ button:hover,
 }
 
 .punkt.is-active {
-  fill: var(--color-main);
+  fill: var(--farve-grøn-lys);
 }
 
 /* Bevægelsesfølsomme brugere: ingen flyve-animation */
@@ -511,8 +533,8 @@ button:hover,
   padding: var(--space-1);
   display: grid;
   gap: var(--space-1);
-  background: var(--color-accent);
-  border: 1px solid var(--color-border);
+  background: var(--farve-brun);
+  border: 1px solid var(--farve-kant);
 }
 
 /* Punkterne i "Udforsk eventet" (<details>) */
@@ -522,9 +544,9 @@ button:hover,
 }
 
 .accordion-item {
-  border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-accent); /* brun venstrekant */
-  background: var(--color-surface);
+  border: 1px solid var(--farve-kant);
+  border-left: 4px solid var(--farve-brun); /* brun venstrekant */
+  background: var(--farve-grøn-mørk);
 }
 
 .accordion-item summary {
@@ -538,15 +560,15 @@ button:hover,
 
 .accordion-item p {
   padding: 0 var(--space-1) var(--space-1);
-  color: var(--color-muted);
+  color: var(--farve-tekst-dæmpet);
 }
 
 /* Åbent/hover/aktivt punkt lyser op (bruges sammen med SVG'en) */
 .accordion-item[open],
 .accordion-item:hover,
 .accordion-item.is-active {
-  background: var(--color-main);
-  border-left-color: var(--color-magic);
+  background: var(--farve-grøn-lys);
+  border-left-color: var(--farve-magi);
 }
 
 /* Al tekst på svg-siden bliver mørkebrun
@@ -555,12 +577,12 @@ button:hover,
 .svg-page h2,
 .svg-page h3,
 .svg-page p {
-  color: var(--color-accent-dark);
+  color: var(--farve-brun-mørk);
 }
 
-/* ======================================
-   FORMULAR (form.html)
-   ====================================== */
+/* #endregion */
+
+/* #region FORMULAR (form.html) */
 .form-page {
   display: grid;
   gap: var(--space-2);
@@ -577,16 +599,18 @@ button:hover,
 }
 
 .form-intro p {
-  color: var(--color-muted);
+  color: var(--farve-tekst-dæmpet);
 }
 
 /* Selve formularen */
 .form-page form {
-  --felt: #b8cc72; /* lysegrøn - felter */
+  --felt: var(
+    --farve-grøn-lys
+  ); /* felterne bruger den lysegrønne farve fra VARIABLER */
 
-  font-family: "Jim Nightshade", cursive; /* skrifttypen hentes i form.html */
+  /* Ingen font-family her -> formularen bruger standardteksten fra body (Cormorant Garamond) */
   font-size: 1.2rem;
-  background: var(--color-accent); /* baggrundsfarven på formen */
+  background: var(--farve-brun); /* baggrundsfarven på formen */
   padding: var(--space-2);
   border-radius: 12px;
   display: grid;
@@ -602,7 +626,7 @@ button:hover,
   border-radius: 6px;
   padding: 0.75rem 1rem;
   width: min(100%, 25rem);
-  color: var(--color-text); /* mørk tekst, så det man skriver kan læses */
+  color: var(--farve-tekst); /* mørk tekst, så det man skriver kan læses */
   font-family: "Cormorant Garamond", serif; /* samme som brødteksten */
 }
 
@@ -611,6 +635,52 @@ button:hover,
   text-align: center;
   text-align-last: center; /* centrerer teksten i Chrome/Safari */
   cursor: pointer;
+}
+
+/* Grøn linje rundt om en åben kategori */
+.form-page details[open] {
+  border: 2px solid var(--farve-grøn-lys);
+  border-radius: 8px;
+  padding: var(--space-1);
+}
+
+.form-page select {
+  justify-content: center;
+  position: relative;
+}
+
+.form-page select::picker-icon {
+  position: absolute;
+  right: 1rem;
+}
+
+.form-page select::picker(select) {
+  background: var(--farve-grøn-lys);
+  border: dotted;
+  border-color: var(--farve-grøn-mørk);
+  border-radius: 6px;
+  padding: var(--space-05) 0;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.form-page select option {
+  justify-content: center; /* centrerer teksten i listen */
+  padding: 0.4rem 1rem;
+  background: var(
+    --farve-grøn-lys
+  ); /* bruges også af browsere uden base-select */
+  color: var(--farve-tekst);
+}
+
+/* Den alder man peger på (hover) eller har valgt (checked) */
+.form-page select option:hover,
+.form-page select option:checked {
+  background: var(--farve-grøn-mørk);
+}
+
+/* Skjul det lille flueben foran den valgte alder */
+.form-page select option::checkmark {
+  display: none;
 }
 
 /* "Skal besvares" - lille understreget tekst */
@@ -629,9 +699,25 @@ button:hover,
   padding: var(--space-1);
   margin-block: var(--space-05);
 }
+.fjern button {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--farve-kant);
+  background: var(--farve-sidebaggrund);
+  font: inherit;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+}
 
 .form-page summary {
   cursor: pointer;
+}
+
+.form-page form > label,
+.form-page summary,
+.form-page button[type="submit"] {
+  font-family: "Jim Nightshade", cursive;
+  font-size: 1.3em; /* Jim Nightshade ser mindre ud end brødteksten */
 }
 
 /* En label med en radio i: knap og tekst på én linje */
@@ -675,7 +761,7 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
 /* Send-knap */
 .form-page button[type="submit"] {
   background: var(--felt);
-  color: var(--color-text);
+  color: var(--farve-tekst);
   border: none;
   border-radius: 8px;
   padding: 0.75rem 2rem;
@@ -684,9 +770,9 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   margin-top: var(--space-1);
 }
 
-/* ======================================
-   OPSAMLING (opsamling.html)
-   ====================================== */
+/* #endregion */
+
+/* #region OPSAMLING (opsamling.html) */
 .opsamling-page {
   display: grid;
   gap: var(--space-2);
@@ -703,7 +789,7 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
 }
 
 .opsamling-intro p {
-  color: var(--color-muted);
+  color: var(--farve-tekst-dæmpet);
 }
 
 /* ==================================================
@@ -712,7 +798,7 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
    ser ud som en billet/adgangsbevis.
 
    To variationer styres af billettypen fra formularen:
-     data-billet="en-dag"  -> lys pergamentbillet, lilla segl
+     data-billet="en-dag"  -> lys pergamentbillet
      data-billet="weekend" -> mørk nat-skov-billet, guld
    Farverne ligger i egne variabler (--billet-...),
    så variation 2 kun skal skifte variablerne ud.
@@ -721,10 +807,8 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   /* Variation 1 (standard): en dags billet */
   --billet-bg: #efe0c4; /* pergament */
   --billet-ink: #2f3a2a; /* mørk skovgrøn tekst */
-  --billet-kant: var(--color-accent); /* brun kant og titel */
-  --billet-segl: var(--color-magic); /* lilla segl */
+  --billet-kant: var(--farve-brun); /* brun kant og titel */
 
-  position: relative; /* så seglet kan placeres i forhold til billetten */
   display: grid;
   gap: var(--space-1);
   padding: var(--space-3);
@@ -753,6 +837,30 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   animation: billet-ind 0.9s ease-out both;
 }
 
+/* Toppen af billetten: titel til venstre, logo til højre (laves i script.js)
+   - justify-content: space-between skubber dem ud i hver sin side
+   - flex-wrap: wrap = er der ikke plads (mobil), ryger logoet ned under titlen */
+.billet-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Logoet - har erstattet det gamle voksegl
+   - height bestemmer størrelsen, width: auto holder formen
+   - max-width: 100% = det bliver aldrig bredere end billetten
+   - rotate: lidt skævt, som seglet var */
+.billet-logo {
+  display: block;
+  height: 4rem; /* gør tallet større for et større logo */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  rotate: -6deg;
+}
+
 /* Titlen ("Dagsvandrer" / "Skovvogter") med fantasy-font.
    Skrifttypen hentes i <head> i opsamling.html */
 .opsamling-placeholder h2 {
@@ -760,7 +868,6 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   font-size: 3rem;
   font-weight: 400;
   color: var(--billet-kant);
-  padding-right: 90px; /* plads til seglet, så teksten ikke løber ind under det */
 }
 
 /* Brugerens svar i to kolonner: titel | svar */
@@ -777,27 +884,6 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
 
 .opsamling-placeholder dd {
   margin: 0;
-}
-
-/* Voksegl i øverste højre hjørne (laves i script.js)
-   position: absolute placerer det i forhold til billetten */
-.segl {
-  position: absolute;
-  top: var(--space-2);
-  right: var(--space-2);
-  width: 80px;
-  aspect-ratio: 1; /* lige så høj som bred = cirkel */
-  display: grid;
-  place-content: center; /* "DGS" i midten */
-  border-radius: 50%;
-  /* To lag: et hvidligt skær øverst til venstre (giver glans)
-     ovenpå seglets farve */
-  background:
-    radial-gradient(circle at 35% 35%, #fff6, #0000 60%), var(--billet-segl);
-  color: #fff;
-  font-weight: 700;
-  rotate: 12deg; /* lidt skævt, som et rigtigt segl */
-  box-shadow: 0 3px 6px #0004;
 }
 
 /* Billetnummeret (laves i script.js) */
@@ -847,12 +933,11 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   --billet-bg: #2c3b27; /* mørk nat-skov */
   --billet-ink: #efe4d8; /* creme tekst */
   --billet-kant: #d9b45a; /* guld kant og titel */
-  --billet-segl: #b8892d; /* guldsegl */
 }
 
-/* ======================================
-   404-SIDE (404.html)
-   ====================================== */
+/* #endregion */
+
+/* #region 404-SIDE (404.html) */
 .error-page {
   display: grid;
   gap: var(--space-1);
@@ -860,5 +945,7 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
 }
 
 .error-page p {
-  color: var(--color-muted);
+  color: var(--farve-tekst-dæmpet);
 }
+
+/* #endregion */

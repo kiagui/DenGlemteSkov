@@ -64,17 +64,28 @@ if (opsamlingPlaceholder) {
 
   // "Oversættelser" fra value (det der sendes) til pæn tekst
   const tekster = {
-    "en-dag": "En dags billet",
-    weekend: "Weekend billet",
+    "en-dag": "Endagsbillet",
+    weekend: "Weekendbillet",
     fredag: "Fredag",
     lordag: "Lørdag",
     sondag: "Søndag",
-    "dato1-kl12": "Dato 1 kl. 12",
-    "dato1-kl15": "Dato 1 kl. 15",
-    "dato2-kl12": "Dato 2 kl. 12",
-    "dato2-kl15": "Dato 2 kl. 15",
-    "dato3-kl12": "Dato 3 kl. 12",
-    "dato3-kl15": "Dato 3 kl. 15",
+    // Workshop-tider (value fra form.html -> pæn tekst)
+    "fre-kl9": "Fredag 18. juni kl. 9",
+    "fre-kl10": "Fredag 18. juni kl. 10",
+    "fre-kl11": "Fredag 18. juni kl. 11",
+    "fre-kl13": "Fredag 18. juni kl. 13",
+    "fre-kl15": "Fredag 18. juni kl. 15",
+    "fre-kl16": "Fredag 18. juni kl. 16",
+    "lor-kl9": "Lørdag 19. juni kl. 9",
+    "lor-kl10": "Lørdag 19. juni kl. 10",
+    "lor-kl11": "Lørdag 19. juni kl. 11",
+    "lor-kl13": "Lørdag 19. juni kl. 13",
+    "lor-kl15": "Lørdag 19. juni kl. 15",
+    "lor-kl16": "Lørdag 19. juni kl. 16",
+    "son-kl9": "Søndag 20. juni kl. 9",
+    "son-kl10": "Søndag 20. juni kl. 10",
+    "son-kl11": "Søndag 20. juni kl. 11",
+    "son-kl13": "Søndag 20. juni kl. 13",
   };
 
   // Henter en værdi fra URL'en og gør den pæn. Returnerer null hvis feltet er tomt.
@@ -94,26 +105,31 @@ if (opsamlingPlaceholder) {
     // Dagen vises kun, hvis man har valgt en dags billet
     ["Dag", params.get("billet") === "en-dag" ? hent("dag") : null],
     ["Potion workshop", hent("potion")],
-    ["Workshop 2", hent("workshop2")],
-    ["Workshop 3", hent("workshop3")],
+    ["Wand workshop", hent("wand")],
+    ["Sword workshop", hent("sword")],
   ];
 
   // Byg indholdet
 
-  // ---------- Titel på billetten ----------
+  // ---------- Toppen af billetten: titel til venstre, logo til højre ----------
+  // Logoet har erstattet det gamle voksegl ("DGS").
+  // De to ligger i en fælles <div class="billet-top">, så CSS kan sætte dem
+  // ved siden af hinanden - og under hinanden, hvis billetten er smal.
+  const top = document.createElement("div");
+  top.className = "billet-top";
+
   const titler = { "en-dag": "Dagsbillet", weekend: "Weekendbillet" };
   const overskrift = document.createElement("h2");
   overskrift.textContent = titler[billet] || "Din tilmelding";
-  opsamlingPlaceholder.append(overskrift);
 
-  // ---------- Voksegl ----------
-  // En rund <div> med "DGS" (Den Glemte Skov).
-  // Den placeres i øverste højre hjørne af billetten med CSS (.segl)
-  const segl = document.createElement("div");
-  segl.className = "segl";
-  segl.textContent = "DGS";
-  segl.setAttribute("aria-hidden", "true"); // pynt - skærmlæsere springer den over
-  opsamlingPlaceholder.append(segl);
+  // Samme logo.svg som i headeren. Størrelsen styres i style.css (.billet-logo)
+  const logo = document.createElement("img");
+  logo.className = "billet-logo";
+  logo.src = "./logo.svg";
+  logo.alt = "Den Glemte Skov";
+
+  top.append(overskrift, logo);
+  opsamlingPlaceholder.append(top);
 
   const liste = document.createElement("dl");
   linjer.forEach(([titel, vaerdi]) => {

@@ -32,9 +32,10 @@
     <section class="form-page">
       <header class="form-intro">
         <h1>Tilmelding</h1>
-        <p>Her er den endelige tilmelding til Den Glemte Skov. Du udfylder navn og email samt ønsket billettype og boder
-          her. Din betaling sker først på dagen, ved fremvisning af din tilmelding. </p>
-        <p>Tilmelding gælder kun én person, hvis navn står på dokument. Husk billede ID til indgagen, for bevis af din
+        <p>Her er den endelige tilmelding til Den Glemte Skov. Du udfylder navn og email samt ønsket billettype og
+          workshops
+          her. Din betaling sker først på dagen ved fremvisning af din tilmelding. </p>
+        <p>Tilmelding gælder kun én person, hvis navn står på dokument. Husk billed-ID til indgangen, for bevis af din
           billet.</p>
       </header>
 
@@ -47,9 +48,7 @@
         <p class="skal-besvares">Skal besvares</p>
 
         <!-- Dropdown med alder
-             - name="alder" er det, der sendes videre til opsamling.html
-             - Den første option har value="" -> sammen med required
-               SKAL man vælge en alder, før formularen kan sendes -->
+             - name="alder" er det, der sendes videre til opsamling.html -->
         <label for="alder">Alder *</label>
         <select id="alder" name="alder" required>
           <option value="">-- Vælg --</option>
@@ -72,55 +71,64 @@
           <fieldset>
             <legend>Hvilken type billet ønsker du at købe?</legend>
 
-            <label><input type="radio" name="billet" value="en-dag" required> En dags billet</label>
-            <label><input type="radio" name="billet" value="weekend"> Weekend billet</label>
+            <label><input type="radio" name="billet" value="en-dag" required> Endagsbillet</label>
+            <label><input type="radio" name="billet" value="weekend"> Weekendbillet</label>
 
-            <!-- Vises KUN når "En dags billet" er valgt (styres i style.css med :has) -->
+            <!-- Vises KUN når "Endagsbillet" er valgt (styres i style.css med :has) -->
             <fieldset class="vaelg-dag">
               <legend>Hvilken dag?</legend>
               <label><input type="radio" name="dag" value="fredag"> Fredag</label>
               <label><input type="radio" name="dag" value="lordag"> Lørdag</label>
               <label><input type="radio" name="dag" value="sondag"> Søndag</label>
             </fieldset>
+          </fieldset>
         </details>
-        </fieldset>
 
 
+        <!-- Workshops - tiderne passer med programmet på forsiden (index.html)
+             - name = hvilken workshop (potion / wand / sword)
+             - value = dag + tid, fx "fre-kl9" -> script.js laver det om til
+               "Fredag 18. juni kl. 9" på opsamlingssiden -->
         <details class="workshop">
           <summary>Tilmelding til workshops</summary>
 
           <fieldset>
             <legend>Du kan vælge at deltage på følgende tidspunkt til Potion workshop:</legend>
 
-            <label><input type="radio" name="potion" value="dato1-kl12"> Dato 1 kl. 12</label>
-            <label><input type="radio" name="potion" value="dato1-kl15"> Dato 1 kl. 15</label>
-            <label><input type="radio" name="potion" value="dato2-kl12"> Dato 2 kl. 12</label>
-            <label><input type="radio" name="potion" value="dato2-kl15"> Dato 2 kl. 15</label>
-            <label><input type="radio" name="potion" value="dato3-kl12"> Dato 3 kl. 12</label>
-            <label><input type="radio" name="potion" value="dato3-kl15"> Dato 3 kl. 15</label>
-            <button type="button" class="fjern-valg">Fjern valg</button>
+            <label><input type="radio" name="potion" value="fre-kl9"> Fredag 18. juni kl. 9</label>
+            <label><input type="radio" name="potion" value="fre-kl13"> Fredag 18. juni kl. 13</label>
+            <label><input type="radio" name="potion" value="fre-kl15"> Fredag 18. juni kl. 15</label>
+            <label><input type="radio" name="potion" value="lor-kl9"> Lørdag 19. juni kl. 9</label>
+            <label><input type="radio" name="potion" value="lor-kl13"> Lørdag 19. juni kl. 13</label>
+            <label><input type="radio" name="potion" value="son-kl9"> Søndag 20. juni kl. 9</label>
+            <label><input type="radio" name="potion" value="son-kl13"> Søndag 20. juni kl. 13</label>
+            <div class="fjern"><button type="button" class="fjern-valg">Fjern valg</button></div>
           </fieldset>
           <fieldset>
-            <legend>Du kan vælge at deltage på følgende tidspunkt til x workshop:</legend>
+            <legend>Du kan vælge at deltage på følgende tidspunkt til Wand workshop:</legend>
 
-            <label><input type="radio" name="workshop2" value="dato1-kl12"> Dato 1 kl. 12</label>
-            <label><input type="radio" name="workshop2" value="dato1-kl15"> Dato 1 kl. 15</label>
-            <label><input type="radio" name="workshop2" value="dato2-kl12"> Dato 2 kl. 12</label>
-            <label><input type="radio" name="workshop2" value="dato2-kl15"> Dato 2 kl. 15</label>
-            <label><input type="radio" name="workshop2" value="dato3-kl12"> Dato 3 kl. 12</label>
-            <label><input type="radio" name="workshop2" value="dato3-kl15"> Dato 3 kl. 15</label>
-            <button type="button" class="fjern-valg">Fjern valg</button>
+            <label><input type="radio" name="wand" value="fre-kl9"> Fredag 18. juni kl. 9</label>
+            <label><input type="radio" name="wand" value="fre-kl11"> Fredag 18. juni kl. 11</label>
+            <label><input type="radio" name="wand" value="fre-kl15"> Fredag 18. juni kl. 15</label>
+            <label><input type="radio" name="wand" value="lor-kl9"> Lørdag 19. juni kl. 9</label>
+            <label><input type="radio" name="wand" value="lor-kl11"> Lørdag 19. juni kl. 11</label>
+            <label><input type="radio" name="wand" value="lor-kl15"> Lørdag 19. juni kl. 15</label>
+            <label><input type="radio" name="wand" value="son-kl9"> Søndag 20. juni kl. 9</label>
+            <label><input type="radio" name="wand" value="son-kl11"> Søndag 20. juni kl. 11</label>
+            <div class="fjern"><button type="button" class="fjern-valg">Fjern valg</button></div>
           </fieldset>
           <fieldset>
-            <legend>Du kan vælge at deltage på følgende tidspunkt til x workshop:</legend>
+            <legend>Du kan vælge at deltage på følgende tidspunkt til Sword workshop:</legend>
 
-            <label><input type="radio" name="workshop3" value="dato1-kl12"> Dato 1 kl. 12</label>
-            <label><input type="radio" name="workshop3" value="dato1-kl15"> Dato 1 kl. 15</label>
-            <label><input type="radio" name="workshop3" value="dato2-kl12"> Dato 2 kl. 12</label>
-            <label><input type="radio" name="workshop3" value="dato2-kl15"> Dato 2 kl. 15</label>
-            <label><input type="radio" name="workshop3" value="dato3-kl12"> Dato 3 kl. 12</label>
-            <label><input type="radio" name="workshop3" value="dato3-kl15"> Dato 3 kl. 15</label>
-            <button type="button" class="fjern-valg">Fjern valg</button>
+            <label><input type="radio" name="sword" value="fre-kl10"> Fredag 18. juni kl. 10</label>
+            <label><input type="radio" name="sword" value="fre-kl13"> Fredag 18. juni kl. 13</label>
+            <label><input type="radio" name="sword" value="fre-kl16"> Fredag 18. juni kl. 16</label>
+            <label><input type="radio" name="sword" value="lor-kl10"> Lørdag 19. juni kl. 10</label>
+            <label><input type="radio" name="sword" value="lor-kl13"> Lørdag 19. juni kl. 13</label>
+            <label><input type="radio" name="sword" value="lor-kl16"> Lørdag 19. juni kl. 16</label>
+            <label><input type="radio" name="sword" value="son-kl10"> Søndag 20. juni kl. 10</label>
+            <label><input type="radio" name="sword" value="son-kl13"> Søndag 20. juni kl. 13</label>
+            <div class="fjern"><button type="button" class="fjern-valg">Fjern valg</button></div>
           </fieldset>
         </details>
 
