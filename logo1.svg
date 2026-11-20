@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.59 61.77">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: JimNightshade-Regular, 'Jim Nightshade';
+        font-size: 24px;
+      }
+
+      .cls-2 {
+        fill: #af7c25;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: .5px;
+      }
+
+      .cls-3 {
+        fill: #a9b7c2;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+
+      .cls-5 {
+        fill: #788686;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <rect class="cls-2" x="4.27" y="20.85" width="48.89" height="20.07"/>
+    <path class="cls-4" d="M48.46,21.11c-3.91,1.27-6.79,4.61-7.45,8.62-.69,4.24,1.22,8.55,4.88,10.93"/>
+    <path class="cls-4" d="M33.76,21.11c-3.91,1.27-6.79,4.61-7.45,8.62-.69,4.24,1.23,8.55,4.88,10.93"/>
+    <path class="cls-4" d="M19.07,21.11c-3.91,1.27-6.8,4.61-7.45,8.62-.7,4.24,1.22,8.55,4.87,10.93"/>
+    <rect class="cls-5" x="53.17" y=".25" width="10.58" height="61.27"/>
+    <path class="cls-3" d="M63.75,19.27s.06,0,.15-.01c28.2-1.25,49.34-2.07,50.5-2.12,54.22-2.15,81.34-3.22,107.02.26,30.94,4.19,65.6,12.24,65.6,12.24.16.04.4.1.56.13-7.85,2.17-19.15,5.17-32.87,8.39-16,3.75-29.14,6.36-33.65,7.2-23.7,4.41-33.55,1.67-106.77-.04-19.44-.46-50.54-1.01-50.54-1.01,0,0,0,0,0,0q.11-5.84.12-11.85Q63.87,25.76,63.75,19.27Z"/>
+    <text class="cls-1" transform="translate(113.01 39.48)"><tspan x="0" y="0">Den Glemte </tspan><tspan class="cls-6" x="89.5" y="0">S</tspan><tspan x="98.62" y="0">kov</tspan></text>
+  </g>
+  <g id="Layer_1" data-name="Layer 1">
+    <ellipse class="cls-2" cx="2.93" cy="30.88" rx="2.68" ry="15.99"/>
+  </g>
+</svg>

@@ -277,7 +277,9 @@ button:hover,
     "svaerd knap";
   align-content: center;
   align-items: center;
-  column-gap: var(--space-3); /* luft mellem sværdet og teksten - større tal = mere luft */
+  column-gap: var(
+    --space-3
+  ); /* luft mellem sværdet og teksten - større tal = mere luft */
   row-gap: var(--space-1);
 }
 
@@ -895,7 +897,7 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   gap: var(--space-1);
 }
 
-/* Logoet - har erstattet det gamle voksegl
+/* Logo
    - height bestemmer størrelsen, width: auto holder formen
    - max-width: 100% = det bliver aldrig bredere end billetten
    - rotate: lidt skævt, som seglet var */
@@ -905,7 +907,6 @@ fieldset:has(input[value="en-dag"]:checked) .vaelg-dag {
   width: auto;
   max-width: 100%;
   object-fit: contain;
-  rotate: -6deg;
 }
 
 /* Titlen ("Dagsvandrer" / "Skovvogter") med fantasy-font.
